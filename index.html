@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion Mail Hero Recreation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .dotted-path {
+            stroke-dasharray: 6 10;
+            animation: dash 60s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+        /* Custom scrollbar for the mockup to look clean */
+        .mockup-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .mockup-scroll::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-4 py-4 max-w-[1400px] mx-auto relative z-50">
+        <div class="flex items-center gap-8">
+            <!-- Logo -->
+            <a href="#" class="flex items-center">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" rx="3" fill="black"/>
+                    <path d="M16.5 6V17.5C16.5 17.7761 16.2761 18 16 18H15.4142C15.2816 18 15.1544 17.9473 15.0607 17.8536L8.5 11.2929V17.5C8.5 17.7761 8.27614 18 8 18H7.5C7.22386 18 7 17.7761 7 17.5V6.5C7 6.22386 7.22386 6 7.5 6H8.08579C8.21839 6 8.34564 6.05268 8.43934 6.14645L15 12.7071V6.5C15 6.22386 15.2239 6 15.5 6H16C16.2761 6 16.5 6.22386 16.5 6Z" fill="white"/>
+                </svg>
+            </a>
+            
+            <!-- Nav Links -->
+            <div class="hidden lg:flex items-center gap-6 text-[15px] font-medium text-gray-800">
+                <div class="group relative cursor-pointer flex items-center gap-1">
+                    Product 
+                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="group relative cursor-pointer flex items-center gap-1">
+                    AI
+                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="group relative cursor-pointer flex items-center gap-1">
+                    Solutions
+                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="group relative cursor-pointer flex items-center gap-1">
+                    Resources
+                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <a href="#" class="hover:text-black">Enterprise</a>
+                <a href="#" class="hover:text-black">Pricing</a>
+                <a href="#" class="hover:text-black">Request a demo</a>
+            </div>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="flex items-center gap-4">
+            <a href="#" class="text-[15px] font-medium hover:text-gray-600 hidden sm:block">Log in</a>
+            <a href="#" class="bg-black text-white px-4 py-2 rounded-md text-[14px] font-medium hover:bg-gray-800 transition-colors">Get Notion Mail free</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative pt-12 pb-20">
+        
+        <!-- Background Dotted Line (Decorative) -->
+        <div class="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+            <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 800">
+                <path d="M-100 450 C 200 450, 400 400, 720 180" stroke="#E5E5E5" stroke-width="4" stroke-linecap="round" stroke-dasharray="12 16" fill="none" />
+            </svg>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center px-4 relative">
+            
+            <!-- Paper Plane Icon -->
+            <div class="flex justify-center mb-6">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform -rotate-12">
+                    <path d="M22 2L11 13"></path>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                </svg>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-5xl md:text-[64px] leading-[1.1] font-bold tracking-tight text-black mb-6">
+                The inbox that<br>thinks like you
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+                Meet Notion Mail, the inbox that organizes itself, drafts emails, and schedules meetings any way you’d like.
+            </p>
+
+            <!-- CTA Button -->
+            <div class="flex justify-center mb-16 relative">
+                <a href="#" class="bg-black text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-gray-800 transition-colors">
+                    Get Notion Mail free
+                </a>
+
+                <!-- Floating Badge -->
+                <div class="absolute left-[65%] top-[-10px] hidden md:block animate-bounce-slow">
+                    <div class="bg-[#F7F7F5] border border-gray-200 rounded-xl px-4 py-2 shadow-sm text-gray-800 text-lg whitespace-nowrap">
+                        Organize recruiting candidates
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Mockup -->
+        <div class="max-w-[1100px] mx-auto px-4 relative">
+            
+            <!-- Floating Cursor Interaction -->
+            <div class="absolute right-[15%] top-[-20px] z-20 hidden lg:block">
+                <div class="bg-white rounded-full p-3 shadow-lg border border-gray-100">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 19L6 6L19 12L13.5 13.5L17.5 17.5L16 19L12 15L7.5 19Z" fill="black" stroke="white" stroke-width="1.5"/>
+                        <path d="M12 15L7.5 19L6 6L19 12L13.5 13.5L12 15Z" fill="black"/>
+                    </svg>
+                </div>
+                <div class="absolute top-8 left-8 bg-white/90 backdrop-blur border border-gray-200 rounded-lg px-3 py-1 text-sm shadow-sm whitespace-nowrap">
+                    Ask AI
+                </div>
+            </div>
+
+            <!-- Main Interface Container -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-2xl overflow-hidden flex h-[600px] md:h-[700px]">
+                
+                <!-- Sidebar -->
+                <aside class="w-[240px] bg-[#F7F7F5] flex-shrink-0 flex flex-col border-r border-gray-200 hidden md:flex">
+                    <!-- User Profile -->
+                    <div class="p-3 flex items-center justify-between mt-2">
+                        <div class="flex items-center gap-2 px-2 py-1 hover:bg-gray-200 rounded-md cursor-pointer w-full">
+                            <img src="https://placehold.co/24x24/333/fff?text=D" alt="User" class="w-5 h-5 rounded-full grayscale">
+                            <span class="text-sm font-medium text-gray-700">Doru</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-gray-600 p-1">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="px-4 mb-4">
+                        <div class="flex items-center gap-2 text-gray-500 bg-transparent px-1 py-1">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <span class="text-sm">Search</span>
+                        </div>
+                    </div>
+
+                    <!-- Views Section -->
+                    <div class="flex-1 overflow-y-auto px-2">
+                        <div class="text-[11px] font-semibold text-gray-500 px-3 mb-1 uppercase tracking-wide">Views</div>
+                        
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 bg-[#EFEFED] rounded-md text-sm text-gray-900 font-medium mb-0.5">
+                            <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            Inbox
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 hover:bg-gray-200 rounded-md text-sm text-gray-600 mb-0.5">
+                            <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                            Calendar
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 hover:bg-gray-200 rounded-md text-sm text-gray-600 mb-0.5">
+                            <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h18c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                            Hiring
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 hover:bg-gray-200 rounded-md text-sm text-gray-600 mb-0.5">
+                            <svg class="w-4 h-4 text-pink-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            Support
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 hover:bg-gray-200 rounded-md text-sm text-gray-600 mb-0.5">
+                            <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                            Travel
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 hover:bg-gray-200 rounded-md text-sm text-gray-600 mb-4">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
+                            Newsletters
+                        </a>
+
+                        <div class="text-[11px] font-semibold text-gray-500 px-3 mb-1 uppercase tracking-wide">Mail</div>
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 hover:bg-gray-200 rounded-md text-sm text-gray-600 mb-0.5">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="4"></line><line x1="8" y1="2" x2="8" y2="4"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            All mail
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-1.5 hover:bg-gray-200 rounded-md text-sm text-gray-600 mb-0.5">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            Sent
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="flex-1 flex flex-col bg-white">
+                    <!-- Header -->
+                    <header class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center gap-2">
+                            <div class="bg-red-500 rounded-sm p-0.5">
+                                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            </div>
+                            <h2 class="text-sm font-semibold text-gray-900">Inbox</h2>
+                        </div>
+                        <button class="flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 rounded-full text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                            Ask AI
+                        </button>
+                    </header>
+
+                    <!-- Email List -->
+                    <div class="flex-1 overflow-y-auto mockup-scroll">
+                        <table class="w-full text-left border-collapse">
+                            <tbody>
+                                <!-- Row 1 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 w-[25%] text-sm text-gray-900">Andrew, Jason</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Next steps</td>
+                                    <td class="py-3 px-6 text-right">
+                                        <span class="inline-block bg-blue-100 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded">Hiring</span>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Jack Steadman</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Can't find log out button</td>
+                                    <td class="py-3 px-6 text-right"></td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Bud, Stephanie</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Product design role</td>
+                                    <td class="py-3 px-6 text-right">
+                                        <span class="inline-block bg-blue-100 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded">Hiring</span>
+                                    </td>
+                                </tr>
+                                <!-- Row 4 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Natalie</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Dark mode looks off</td>
+                                    <td class="py-3 px-6 text-right"></td>
+                                </tr>
+                                <!-- Row 5 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Kosta B</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Technical interview</td>
+                                    <td class="py-3 px-6 text-right">
+                                        <span class="inline-block bg-blue-100 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded">Hiring</span>
+                                    </td>
+                                </tr>
+                                <!-- Row 6 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Sunny, Vaishnavi</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Re: Coffee</td>
+                                    <td class="py-3 px-6 text-right">
+                                        <span class="inline-block bg-blue-100 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded">Hiring</span>
+                                    </td>
+                                </tr>
+                                <!-- Row 7 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Enabled MD</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Exciting new role</td>
+                                    <td class="py-3 px-6 text-right">
+                                        <span class="inline-block bg-blue-100 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded">Hiring</span>
+                                    </td>
+                                </tr>
+                                <!-- Row 8 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Vicky Soara</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Accelerating your IT</td>
+                                    <td class="py-3 px-6 text-right"></td>
+                                </tr>
+                                <!-- Row 9 -->
+                                <tr class="border-b border-gray-50 hover:bg-gray-50 group cursor-pointer">
+                                    <td class="py-3 px-6 text-sm text-gray-900">Matt, Sarah</td>
+                                    <td class="py-3 px-4 text-sm text-gray-600">Q4 Planning</td>
+                                    <td class="py-3 px-6 text-right"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
