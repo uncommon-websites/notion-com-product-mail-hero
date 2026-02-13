@@ -5,311 +5,420 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notion Mail Hero Recreation</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
         body {
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
-            color: #37352f;
+        }
+        
+        .font-display {
+            font-family: 'Inter Tight', sans-serif;
         }
 
-        /* Custom scrollbar for the mockup to look more native */
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Base animation classes */
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-scale-in {
+            opacity: 0;
+            animation: scaleIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Staggered delays */
+        .delay-0 { animation-delay: 0ms; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+
+        /* Typography utilities */
+        .text-balance { text-wrap: balance; }
+        .text-pretty { text-wrap: pretty; }
+
+        /* Custom scrollbar for the mockup */
         .mockup-scroll::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         .mockup-scroll::-webkit-scrollbar-track {
             background: transparent;
         }
         .mockup-scroll::-webkit-scrollbar-thumb {
-            background-color: rgba(0,0,0,0.1);
-            border-radius: 4px;
+            background-color: #e5e5e5;
+            border-radius: 20px;
         }
 
-        /* Dashed line animation */
-        .dashed-line {
-            stroke-dasharray: 8, 8;
-            opacity: 0.15;
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in-up,
+            .animate-fade-in,
+            .animate-scale-in,
+            .animate-float {
+                animation: none;
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
         }
     </style>
 </head>
-<body class="bg-white min-h-screen flex flex-col overflow-x-hidden">
+<body class="bg-white text-[#050505]">
 
     <!-- Navigation -->
-    <nav class="flex items-center justify-between px-4 py-3 sticky top-0 bg-white z-50">
-        <div class="flex items-center gap-8">
-            <!-- Logo -->
-            <a href="#" class="flex items-center">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="2" width="20" height="20" rx="3" stroke="black" stroke-width="2"/>
-                    <path d="M7 6V18L17 6V18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-
-            <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-6 text-[15px] font-medium text-[#37352f]">
-                <div class="group relative flex items-center gap-1 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded">
-                    Product 
-                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-transparent transition-all duration-300 animate-fade-in delay-0">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Left: Logo -->
+            <div class="flex items-center gap-8">
+                <a href="#" class="flex-shrink-0">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" rx="3" fill="#111"/>
+                        <path d="M16.4 6H14.6L9.8 14.6V6H7.6V18H9.4L14.2 9.4V18H16.4V6Z" fill="white"/>
+                    </svg>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-6 text-[15px] font-medium text-[#333]">
+                    <div class="group relative cursor-pointer flex items-center gap-1 hover:bg-gray-100 px-2 py-1 rounded transition-colors">
+                        Product
+                        <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="group relative cursor-pointer flex items-center gap-1 hover:bg-gray-100 px-2 py-1 rounded transition-colors">
+                        AI
+                        <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="group relative cursor-pointer flex items-center gap-1 hover:bg-gray-100 px-2 py-1 rounded transition-colors">
+                        Solutions
+                        <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="group relative cursor-pointer flex items-center gap-1 hover:bg-gray-100 px-2 py-1 rounded transition-colors">
+                        Resources
+                        <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <a href="#" class="hover:bg-gray-100 px-2 py-1 rounded transition-colors">Enterprise</a>
+                    <a href="#" class="hover:bg-gray-100 px-2 py-1 rounded transition-colors">Pricing</a>
+                    <a href="#" class="hover:bg-gray-100 px-2 py-1 rounded transition-colors">Request a demo</a>
                 </div>
-                <div class="group relative flex items-center gap-1 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded">
-                    AI
-                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-                <div class="group relative flex items-center gap-1 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded">
-                    Solutions
-                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-                <div class="group relative flex items-center gap-1 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded">
-                    Resources
-                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-                <a href="#" class="hover:bg-gray-100 px-2 py-1 rounded">Enterprise</a>
-                <a href="#" class="hover:bg-gray-100 px-2 py-1 rounded">Pricing</a>
-                <a href="#" class="hover:bg-gray-100 px-2 py-1 rounded">Request a demo</a>
             </div>
-        </div>
 
-        <!-- Right Actions -->
-        <div class="flex items-center gap-4">
-            <a href="#" class="text-[15px] font-medium hover:underline hidden sm:block">Log in</a>
-            <a href="#" class="bg-black text-white text-[14px] font-medium px-3.5 py-2 rounded-[5px] hover:bg-gray-800 transition-colors">Get Notion Mail free</a>
+            <!-- Right: Actions -->
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden sm:block text-[15px] font-medium hover:bg-gray-100 px-3 py-1.5 rounded transition-colors">Log in</a>
+                <a href="#" class="bg-[#0066CC] hover:bg-[#0055AA] text-white text-[14px] font-medium px-4 py-2 rounded-[4px] transition-colors">Get Notion Mail free</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <main class="flex-1 flex flex-col items-center pt-12 relative w-full max-w-[1400px] mx-auto">
+    <main class="relative pt-16 pb-24 overflow-hidden">
         
-        <!-- Background Dashed Line -->
-        <div class="absolute top-0 left-0 w-full h-[600px] -z-10 overflow-hidden pointer-events-none">
-            <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 600">
-                <path d="M-100 450 Q 300 500 500 300 T 720 150" fill="none" stroke="#ccc" stroke-width="3" class="dashed-line" />
+        <!-- Background Decorative Dashed Line -->
+        <div class="absolute top-0 left-0 w-full h-[600px] -z-10 overflow-hidden pointer-events-none animate-fade-in delay-200">
+            <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 600">
+                <path d="M-100,300 C200,320 400,350 720,150" stroke="#E5E5E5" stroke-width="3" stroke-dasharray="12 12" fill="none" />
             </svg>
         </div>
 
-        <!-- Hero Content -->
-        <div class="text-center max-w-4xl mx-auto px-4 relative z-10 mb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center relative z-10">
+            
             <!-- Paper Plane Icon -->
-            <div class="flex justify-center mb-6">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform -rotate-12">
-                    <path d="M22 2L11 13"></path>
-                    <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+            <div class="mb-6 animate-fade-in-up delay-100">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="transform rotate-[-10deg]">
+                    <path d="M85 15L15 45L35 55L85 15Z" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M35 55L45 85L55 65" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M55 65L85 15" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
                 </svg>
             </div>
 
             <!-- Headline -->
-            <h1 class="text-5xl md:text-[64px] leading-[1.1] font-bold tracking-tight text-[#111] mb-6">
-                The inbox that<br>thinks like you
+            <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] text-balance max-w-5xl mb-6 text-[#111] animate-fade-in-up delay-200">
+                The inbox that <br class="hidden md:block" /> thinks like you
             </h1>
 
             <!-- Subheadline -->
-            <p class="text-lg md:text-[21px] leading-relaxed text-gray-600 max-w-2xl mx-auto mb-8">
-                Meet Notion Mail, the inbox that organizes itself, drafts emails, and schedules meetings any way you’d like.
+            <p class="text-xl md:text-[22px] leading-relaxed text-gray-600 text-pretty max-w-3xl mb-10 animate-fade-in-up delay-300">
+                Meet Notion Mail, the inbox that organizes itself, drafts emails, and schedules meetings any way you'd like.
             </p>
 
-            <!-- CTA Area -->
-            <div class="relative inline-block">
-                <a href="#" class="bg-[#111] text-white text-[17px] font-medium px-6 py-3.5 rounded-[8px] hover:bg-gray-800 transition-colors inline-block">
+            <!-- CTA Button -->
+            <div class="relative animate-fade-in-up delay-400">
+                <a href="#" class="inline-block bg-[#0066CC] hover:bg-[#0055AA] text-white text-lg font-medium px-6 py-3 rounded-[6px] transition-all transform hover:scale-105 shadow-sm">
                     Get Notion Mail free
                 </a>
 
-                <!-- Floating Tooltip Badge -->
-                <div class="absolute left-full top-1/2 -translate-y-1/2 ml-6 whitespace-nowrap hidden md:flex items-center bg-gray-50/80 backdrop-blur-sm border border-gray-100 shadow-sm rounded-xl px-4 py-2 text-[17px] text-[#111]">
-                    Organize recruiting candidates
+                <!-- Floating Pill: Organize recruiting candidates -->
+                <div class="absolute -right-[180px] top-1/2 -translate-y-1/2 hidden lg:flex items-center bg-[#F7F7F5] border border-gray-200 rounded-full px-4 py-2 shadow-sm animate-float delay-500">
+                    <span class="text-sm font-medium text-gray-800">Organize recruiting candidates</span>
                 </div>
             </div>
         </div>
 
-        <!-- UI Mockup -->
-        <div class="w-full max-w-[1100px] px-4 md:px-8 pb-20 relative">
+        <!-- UI Mockup Section -->
+        <div class="mt-16 max-w-[1100px] mx-auto px-4 relative animate-scale-in delay-500">
             
-            <!-- Floating Cursor Element -->
-            <div class="absolute right-[18%] top-[14%] z-30 hidden md:block">
-                <div class="relative">
-                    <!-- Cursor Circle -->
-                    <div class="w-14 h-14 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center relative z-10">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M17 17l1.4 1.4M17 7l1.4-1.4M7 17l-1.4 1.4M7 7L5.6 5.6"></path>
-                        </svg>
-                    </div>
-                    <!-- Cursor Arrow -->
-                    <svg class="absolute -bottom-4 -right-2 w-6 h-6 text-black fill-current z-20 transform rotate-[-15deg]" viewBox="0 0 24 24">
-                        <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" stroke="white" stroke-width="2"/>
+            <!-- Floating Magic Button (Top Right of UI) -->
+            <div class="absolute -top-6 right-12 z-30 animate-float delay-700">
+                <div class="bg-white rounded-full w-14 h-14 flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100 cursor-pointer hover:scale-105 transition-transform">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4V20M4 12H20" stroke="none" /> <!-- Spacer -->
+                        <path d="M9.5 14.5L4.5 19.5" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M14.5 9.5L19.5 4.5" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M16 16C16 16 14 13 12 13C10 13 8 16 8 16" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="8" r="1.5" fill="#111"/>
+                        <path d="M12 4C12 4 14 7 16 7C18 7 20 4 20 4" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 20C4 20 7 18 7 16C7 14 4 12 4 12" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <!-- Simple sparkle icon replacement -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="absolute">
+                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M18 18L19 21L22 22L19 23L18 26L17 23L14 22L17 21L18 18Z" fill="#111" transform="scale(0.4) translate(10, 10)"/>
                     </svg>
                 </div>
             </div>
 
-            <!-- Main App Container -->
-            <div class="bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col md:flex-row h-[600px] w-full">
+            <!-- The Mockup Window -->
+            <div class="bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-200 overflow-hidden flex h-[600px] md:h-[700px]">
                 
                 <!-- Sidebar -->
-                <div class="w-full md:w-[240px] bg-[#F7F7F5] flex flex-col border-r border-gray-200 flex-shrink-0">
-                    <!-- Sidebar Header -->
-                    <div class="p-3 flex items-center justify-between group cursor-pointer hover:bg-gray-200/50 m-1 rounded">
+                <div class="w-[240px] bg-[#F7F7F5] flex-shrink-0 flex flex-col border-r border-gray-200 hidden md:flex">
+                    <!-- User Profile -->
+                    <div class="p-3 flex items-center justify-between group cursor-pointer hover:bg-gray-200/50 m-2 rounded-md transition-colors">
                         <div class="flex items-center gap-2">
-                            <img src="https://placehold.co/24x24" alt="Profile" class="w-5 h-5 rounded-sm grayscale opacity-80">
-                            <span class="text-sm font-medium text-[#37352f]">Doru</span>
+                            <img src="https://placehold.co/40x40" alt="User" class="w-6 h-6 rounded-full grayscale opacity-80">
+                            <span class="text-sm font-medium text-gray-700">Doru</span>
                         </div>
-                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                        <svg class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                     </div>
 
                     <!-- Search -->
-                    <div class="px-3 mb-2">
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-500 hover:bg-gray-200/50 rounded cursor-pointer">
+                    <div class="px-4 mb-4">
+                        <div class="flex items-center gap-2 text-gray-500 text-sm py-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            <span class="text-sm">Search</span>
+                            <span>Search</span>
                         </div>
                     </div>
 
                     <!-- Views Section -->
-                    <div class="px-3 py-2">
+                    <div class="flex-1 overflow-y-auto mockup-scroll px-2">
                         <div class="text-xs font-medium text-gray-500 px-2 mb-1">Views</div>
                         
-                        <div class="flex items-center gap-2 px-2 py-1 bg-[#E8E8E6] text-[#37352f] rounded cursor-pointer mb-0.5">
-                            <div class="w-4 h-4 flex items-center justify-center bg-red-100 rounded-[3px]">
-                                <svg class="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1H4v8h12V6z"/></svg>
+                        <div class="flex items-center gap-2 px-2 py-1.5 bg-[#EBEBEA] rounded-md text-sm text-gray-800 font-medium cursor-pointer mb-0.5">
+                            <div class="w-4 h-4 rounded bg-red-100 flex items-center justify-center text-red-500 text-[10px]">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </div>
-                            <span class="text-sm font-medium">Inbox</span>
+                            Inbox
+                        </div>
+                        
+                        <div class="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-200/50 rounded-md text-sm text-gray-600 cursor-pointer mb-0.5">
+                            <span class="text-orange-400">📅</span>
+                            Calendar
+                        </div>
+                        
+                        <div class="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-200/50 rounded-md text-sm text-gray-600 cursor-pointer mb-0.5">
+                            <span class="text-purple-400">💼</span>
+                            Hiring
                         </div>
 
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-600 hover:bg-gray-200/50 rounded cursor-pointer mb-0.5">
-                            <div class="w-4 h-4 flex items-center justify-center">
-                                <svg class="w-3.5 h-3.5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                            </div>
-                            <span class="text-sm">Calendar</span>
+                        <div class="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-200/50 rounded-md text-sm text-gray-600 cursor-pointer mb-0.5">
+                            <span class="text-pink-400">❤️</span>
+                            Support
                         </div>
 
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-600 hover:bg-gray-200/50 rounded cursor-pointer mb-0.5">
-                            <div class="w-4 h-4 flex items-center justify-center">
-                                <svg class="w-3.5 h-3.5 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
-                            </div>
-                            <span class="text-sm">Hiring</span>
+                        <div class="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-200/50 rounded-md text-sm text-gray-600 cursor-pointer mb-0.5">
+                            <span class="text-blue-400">✈️</span>
+                            Travel
                         </div>
 
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-600 hover:bg-gray-200/50 rounded cursor-pointer mb-0.5">
-                            <div class="w-4 h-4 flex items-center justify-center">
-                                <svg class="w-3.5 h-3.5 text-pink-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg>
-                            </div>
-                            <span class="text-sm">Support</span>
+                        <div class="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-200/50 rounded-md text-sm text-gray-600 cursor-pointer mb-0.5">
+                            <span class="text-green-400">📰</span>
+                            Newsletters
                         </div>
 
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-600 hover:bg-gray-200/50 rounded cursor-pointer mb-0.5">
-                            <div class="w-4 h-4 flex items-center justify-center">
-                                <svg class="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
-                            </div>
-                            <span class="text-sm">Travel</span>
+                        <div class="text-xs font-medium text-gray-500 px-2 mt-6 mb-1">Mail</div>
+                        <div class="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-200/50 rounded-md text-sm text-gray-600 cursor-pointer mb-0.5">
+                            <span class="text-gray-400">📥</span>
+                            All mail
                         </div>
-
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-600 hover:bg-gray-200/50 rounded cursor-pointer mb-0.5">
-                            <div class="w-4 h-4 flex items-center justify-center">
-                                <svg class="w-3.5 h-3.5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
-                            </div>
-                            <span class="text-sm">Newsletters</span>
-                        </div>
-                    </div>
-
-                    <!-- Mail Section -->
-                    <div class="px-3 py-2 mt-2">
-                        <div class="text-xs font-medium text-gray-500 px-2 mb-1">Mail</div>
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-600 hover:bg-gray-200/50 rounded cursor-pointer mb-0.5">
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <span class="text-sm">All mail</span>
-                        </div>
-                        <div class="flex items-center gap-2 px-2 py-1 text-gray-600 hover:bg-gray-200/50 rounded cursor-pointer mb-0.5">
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                            <span class="text-sm">Sent</span>
+                        <div class="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-200/50 rounded-md text-sm text-gray-600 cursor-pointer mb-0.5">
+                            <span class="text-gray-400">📤</span>
+                            Sent
                         </div>
                     </div>
                 </div>
 
                 <!-- Main Content -->
-                <div class="flex-1 bg-white flex flex-col">
-                    <!-- Main Header -->
-                    <div class="px-8 py-4 flex items-center justify-between border-b border-gray-100">
+                <div class="flex-1 flex flex-col bg-white">
+                    <!-- Header -->
+                    <div class="h-14 border-b border-gray-100 flex items-center justify-between px-6">
                         <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 flex items-center justify-center bg-red-100 rounded-[3px]">
-                                <svg class="w-3.5 h-3.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1H4v8h12V6z"/></svg>
+                            <div class="w-5 h-5 rounded bg-red-100 flex items-center justify-center text-red-500 text-xs">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </div>
-                            <h2 class="font-semibold text-[#37352f]">Inbox</h2>
+                            <span class="font-semibold text-gray-800">Inbox</span>
                         </div>
                         
-                        <button class="flex items-center gap-1.5 px-3 py-1.5 rounded border border-gray-200 hover:bg-gray-50 text-sm text-gray-600 transition-colors">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                            Auto-label
-                        </button>
+                        <div class="flex items-center gap-3">
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 rounded-full text-sm text-gray-600 hover:bg-gray-50 transition-colors">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+                                Ask AI
+                            </button>
+                            <button class="p-1.5 text-gray-400 hover:text-gray-600">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Email List -->
-                    <div class="flex-1 overflow-y-auto mockup-scroll px-8">
-                        
+                    <div class="flex-1 overflow-y-auto mockup-scroll">
                         <!-- Row 1 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Andrew, Jason</div>
-                            <div class="flex-1 text-sm text-gray-600">Next steps</div>
-                            <div class="w-auto">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded">Hiring</span>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Andrew, Jason</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Next steps</div>
+                            <div class="w-24 flex justify-end">
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded font-medium">Hiring</span>
                             </div>
                         </div>
 
                         <!-- Row 2 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Jack Steadman</div>
-                            <div class="flex-1 text-sm text-gray-600">Can't find log out button</div>
-                            <div class="w-auto"></div>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Jack Steadman</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Can't find log out button</div>
+                            <div class="w-24 flex justify-end"></div>
                         </div>
 
                         <!-- Row 3 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Bud, Stephanie</div>
-                            <div class="flex-1 text-sm text-gray-600">Product design role</div>
-                            <div class="w-auto">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded">Hiring</span>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Bud, Stephanie</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Product design role</div>
+                            <div class="w-24 flex justify-end">
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded font-medium">Hiring</span>
                             </div>
                         </div>
 
                         <!-- Row 4 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Natalie</div>
-                            <div class="flex-1 text-sm text-gray-600">Dark mode looks off</div>
-                            <div class="w-auto"></div>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Natalie</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Dark mode looks off</div>
+                            <div class="w-24 flex justify-end"></div>
                         </div>
 
                         <!-- Row 5 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Kosta B</div>
-                            <div class="flex-1 text-sm text-gray-600">Technical interview</div>
-                            <div class="w-auto">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded">Hiring</span>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Kosta B</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Technical interview</div>
+                            <div class="w-24 flex justify-end">
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded font-medium">Hiring</span>
                             </div>
                         </div>
 
                         <!-- Row 6 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Sunny, Vaishnavi</div>
-                            <div class="flex-1 text-sm text-gray-600">Re: Coffee</div>
-                            <div class="w-auto">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded">Hiring</span>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Sunny, Vaishnavi</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Re: Coffee</div>
+                            <div class="w-24 flex justify-end">
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded font-medium">Hiring</span>
                             </div>
                         </div>
 
                         <!-- Row 7 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Enabled MD</div>
-                            <div class="flex-1 text-sm text-gray-600">Exciting new role</div>
-                            <div class="w-auto">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded">Hiring</span>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Enabled MD</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Exciting new role</div>
+                            <div class="w-24 flex justify-end">
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded font-medium">Hiring</span>
                             </div>
                         </div>
 
                         <!-- Row 8 -->
-                        <div class="flex items-center py-3 border-b border-gray-100 group cursor-pointer hover:bg-gray-50">
-                            <div class="w-1/4 text-sm text-[#37352f]">Vicky Soara</div>
-                            <div class="flex-1 text-sm text-gray-600">Accelerating your IT</div>
-                            <div class="w-auto"></div>
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Vicky Soara</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Accelerating your IT</div>
+                            <div class="w-24 flex justify-end"></div>
                         </div>
-
+                        
+                        <!-- Row 9 -->
+                        <div class="flex items-center px-6 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group">
+                            <div class="w-1/4 flex items-center gap-3">
+                                <img src="https://placehold.co/32x32" alt="Avatar" class="w-6 h-6 rounded-full">
+                                <span class="text-sm font-medium text-gray-800 truncate">Mike Chen</span>
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600 truncate">Quarterly review notes</div>
+                            <div class="w-24 flex justify-end"></div>
+                        </div>
                     </div>
                 </div>
             </div>
